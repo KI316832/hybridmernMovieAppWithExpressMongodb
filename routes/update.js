@@ -13,6 +13,7 @@ router.post('/', function (req, res) {
 var title=req.body.title;
 
 var newObj={};
+var id=req.body.getId;
 newObj.Title = req.body.title;
 newObj.Year = req.body.year;
 newObj.Actors = req.body.actors;
@@ -27,7 +28,7 @@ newObj.Poster = req.body.poster;
 
 
   //db.open('open',function(){
-    MovieSchema.findOneAndUpdate(req.body.title,newObj,function(err){
+    MovieSchema.findByIdAndUpdate(id,newObj,function(err){
       console.log("------im in side-------");
       if(err) console.log("Error :"+err);
 

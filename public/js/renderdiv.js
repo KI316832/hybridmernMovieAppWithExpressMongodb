@@ -6,7 +6,7 @@ $.ajax({
     success:function(data){
 
      //var data = $.parseJSON(data);
-     console.log(data._id);
+     console.log(data[0]._id);
      var out = "";
      //var i=0;
 
@@ -16,13 +16,13 @@ $.ajax({
       +data[index].Title+'</h3><h4>Year :'+data[index].Year +'</h4><h4>Actors :'+data[index].Actors+'</h4><h4>Director :'+data[index].Director+'</h4><h4>Description :'+data[index].Plot+'</h4>'+
       '<h4>Language :'+data[index].Language+'</h4><h4>Country :'+data[index].Country+'</h4><h4>Released on :'+data[index].Released+'</h4><h4>ImdbRating :'+data[index].imdbRating+'</h4><h4>Awards :'+data[index].Awards+'</h4>'+
 
-      '<button class="btn btn-warning update" type="button" id="'+value.Title
+      '<button class="btn btn-warning update" type="button" id="'+value._id+"|"+value.Title
           +"|"+value.Year+"|"+value.Actors+"|"+value.Director+"|"+value.Plot+"|"+value.Poster+"|"+value.imdbRating+"|"+value.Awards+"|"+value.Released+"|"+value.Language+"|"+value.Country+'" data-toggle="modal" data-target="#myModalHorizontal">Update</button> '+
 
-              '&nbsp;<a data-toggle="modal" data-target="#myModalDeleteAlert" class="btn btn-danger btn-md buttonDelete" id="'+value.Title+'" type="button"><em class="glyphicon glyphicon-delete"></em> Delete'+
+              '&nbsp;<a data-toggle="modal" data-target="#myModalDeleteAlert" class="btn btn-danger btn-md buttonDelete" id="'+value._id+'" type="button"><em class="glyphicon glyphicon-delete"></em> Delete'+
         '</a><br/><br/><br/></div>';
 
-      })
+      });
 
 
 document.getElementById("id01").innerHTML = out;
@@ -54,25 +54,26 @@ $(".update").click(function(){
  $('#update_details').show();
  var data1=$(this).attr('id');
  var values=data1.split('|');
- $('#title').val(values[0]);
+ $("#id").val(values[0]);
+ $('#title').val(values[1]);
  $('#title').attr("readonly","readonly");
- $('#year').val(values[1]);
- $('#actors').val(values[2]);
- $('#director').val(values[3]);
- $('#plot').val(values[4]);
- $('#poster').val(values[5]);
- $('#imdbRating').val(values[6]);
- $('#awards').val(values[7]);
- $('#released').val(values[8]);
- $('#language').val(values[9]);
- $('#country').val(values[10]);
+ $('#year').val(values[2]);
+ $('#actors').val(values[3]);
+ $('#director').val(values[4]);
+ $('#plot').val(values[5]);
+ $('#poster').val(values[6]);
+ $('#imdbRating').val(values[7]);
+ $('#awards').val(values[8]);
+ $('#released').val(values[9]);
+ $('#language').val(values[10]);
+ $('#country').val(values[11]);
  $('#myModalLabel').html('Update Movie Details');
 });
 
 $(".buttonDelete").click(function(){
-  var title=$(this).attr('id');
+  var id=$(this).attr('id');
   //alert(title);
-  $('#titleDelete').val(title);
+  $('#idDelete').val(id);
 });
 
 }
